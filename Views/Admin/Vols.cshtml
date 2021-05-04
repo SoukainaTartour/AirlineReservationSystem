@@ -1,0 +1,78 @@
+﻿@model List<MarocFlight.DAL.Tbl_Vol>
+@{
+    ViewBag.Title = "Vols";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Espace Client</a>
+        </li>
+        <li class="breadcrumb-item active">Les Vols</li>
+    </ol>
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Les vols disponibles
+
+        </div>
+       
+        <div class="card-body">
+            @using (Html.BeginForm("Vols", "Admin", FormMethod.Get))
+            {
+                //the following are search options
+
+
+                <b>Search Option: </b>@Html.RadioButton("option", "Depart") <text>Depart</text> @Html.RadioButton("option", "Destination") <text> Destination </text>
+                @Html.TextBox("search") <input type="submit" name="submit" value="Search" />
+
+
+            }
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Départ</th>
+                            <th>Destination</th>
+                            <th>Prix</th>
+                            <th>Places Disponibles</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Date</th>
+                            <th>Départ</th>
+                            <th>Destination</th>
+                            <th>Prix</th>
+                            <th>Places Disponibles</th>
+                        </tr>
+                    </tfoot>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.Depart</td>
+                                <td>@item.Destination</td>
+                                <td>@item.Prix</td>
+                                <td>@item.NbrTickets</td>
+
+                            </tr>
+
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+</div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model MarocFlight.Models.Vol
+@{
+    ViewBag.Title = "UpdatVol";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item ">Vols</li>
+        <li class="breadcrumb-item active">Ajouter nouvel vol</li>
+
+
+    </ol>
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Add New Category
+
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("UpdateVol", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(m => m.VolId)
+
+                <div class="form-group">
+                    <label class="control-label">Vol Id</label>
+
+                    @Html.TextBoxFor(m => m.VolId, new { @class = "form-control", placeholder = "Entrer le id du vol", required = "required", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.VolId, "", new { @class = "text-danger" })
+                </div>
+
+                <a onclick="window.history.back();" class="btn btn-danger">Cancel</a>
+                <input type="submit" class="btn btn-primary" value="Save" />
+            }
+        </div>
+    </div>
+</div>

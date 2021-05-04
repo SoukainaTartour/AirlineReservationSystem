@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MarocFlight.DAL.Tbl_ReservationDetails>
+
+@{
+    ViewBag.Title = "Reservation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Product
+        <a href="../Admin/ReservationAdd" class="btn btn-info pull-right fa fa-plus">Réserver</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Ville de départ</th>
+                        <th>Action</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Ville de départ</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        int count = 1;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.Depart</td>
+                        <td>
+
+                            @Html.ActionLink("Modifier", "ReservationEdit", new { resId = item.ReservationDetailId })
+
+                        </td>
+                        <td>
+
+                            @Html.ActionLink("Annuler", "ReservationDelete", new { resId = item.ReservationDetailId })
+
+                        </td>
+
+                    </tr>
+                        count++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
